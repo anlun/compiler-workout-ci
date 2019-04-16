@@ -10,6 +10,7 @@ RUN apt-get -qq update \
         ocaml-native-compilers \
         camlp4-extra opam \
     && opam init \
+    && opam switch 4.07.0
     && eval `opam config env` \
     && opam pin add GT https://github.com/dboulytchev/GT.git \
     && opam pin add ostap https://github.com/dboulytchev/ostap.git
