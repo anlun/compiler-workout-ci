@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:rolling
 COPY test.sh /test.sh
 RUN apt-get -qq update \
     && apt install -y \
@@ -9,8 +9,8 @@ RUN apt-get -qq update \
         ocaml-nox \
         ocaml-native-compilers \
         camlp4-extra opam \
-    && opam init \
-    && opam switch 4.07.0 \
+    && opam init --disable-sandboxing \
+    && opam switch create 4.07.1 \
     && eval `opam config env` \
-    && opam pin add GT https://github.com/dboulytchev/GT.git \
-    && opam pin add ostap https://github.com/dboulytchev/ostap.git
+    && opam pin --yes add GT https://github.com/kakadu/GT.git\#v0.0.1 \
+    && opam pin --yes add ostap https://github.com/dboulytchev/ostap.git \
